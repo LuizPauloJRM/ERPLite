@@ -1,76 +1,64 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE html>
+<!-- Define que o documento é uma página XHTML (usado pelo JSF) Estrutura inicial com os imports para fazer referencia com componentes -->
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:p="http://primefaces.org/ui"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+<!--
+    Essa página é acessada no navegador, por exemplo:
+    http://localhost:8080/cadastrosbasicos/cadastro.xhtml
+    Ela é responsável por exibir e gerenciar o cadastro e listagem de pessoas.
+-->
 
 <h:head>
-    <title>Cadastro de Pessoas</title>
+	<title>Cadastro de Pessoas</title>
 </h:head>
 
 <h:body>
-    <h:form id="formPessoa">
-        <p:growl id="msgs" showDetail="true" />
+	<!-- Formulário do jsf , cadastro botões de cadastro -->
+	<!-- Baseado em componentes dentro do body baseados em html-->
+	<h:form id="formPessoa">
+		<h1>Cadastro</h1>
+		
+		<!-- 	teste -->
+		<!-- 		<h:inputText id="campoNome"></h:inputText> -->
+		<!-- 		<h:outputText value="Jsf funcionando..."/> -->
+		<!-- 		<h:commandButton value="Botao"/> -->
+		
+		<!-- Expression Language JSF -->
+		<!-- São declaradas pelo atributo value -->
+		<!-- Minha caixa de texto colocando um valor dentro  -->
+		<!-- Esse valor pode ser vindo do ManagedBean um dado do usuario -->
+		<!-- Valor dinamico do lado do backend , expressao de linguagem-->
+		
+		<!-- Expression Language (EL) jsf #{objeto.atributo} , nome , sobrenome do meu backend que foi criado -->
+		<!-- Expression Language (EL) jsf #{objeto.acao} , salvar , excluir , enviar,"método" -->
+		<!-- setNome(String nome) -->
+		<!-- getNome() -->
+		<!-- Ao salvar chama o "set" guarda o valor , consulta ou mostra valores "get" -->		
+		<!-- Chamada para controlar a tela , referenciar , injetando atributos para carregar os dados  -->
+		<!-- inputText capturar dados inseridos pelo usuário -->
+		Nome:
+		<h:inputText id="nome" value="#{pessoaBean.nome}"/>
+		<br/>	
+		<!-- Output Saida  -->
+		Sobrenome:
+		<h:inputText id="sobrenome" value="#{pessoaBean.sobrenome}"/>
+		<br/>
+		Email:
+		<h:inputText id="email" value="#{pessoaBean.email}"/>
+		<br/>
+		<!-- Juntar nome e sobrenome botoes de comando para chamar uma ação  o "action="-->
+		<h:outputText value="#{pessoaBean.nomeCompleto}"/>
+		<br/>
+		
+		<!-- Criar um método mostrar nome  para juntar nome e sobrenome e mostrar nome completo , podemos chamar método-->
+		<!-- Formulario envia todos os dados -->
+		<h:commandButton action="#{pessoaBean.mostrarNome}" value="Mostrar nome"/>
+	</h:form>
 
-        <p:panel header="Cadastro de Pessoa" style="max-width:600px;margin:auto;margin-top:50px;">
-            <h:panelGrid columns="2" cellpadding="5">
-
-                <h:outputLabel for="nome" value="Nome:" />
-                <p:inputText id="nome" value="#{pessoaBean.pessoa.nome}" required="true" requiredMessage="Informe o nome!" />
-
-                <h:outputLabel for="email" value="Email:" />
-                <p:inputText id="email" value="#{pessoaBean.pessoa.email}" required="true" requiredMessage="Informe o email!" />
-
-                <h:outputLabel for="idade" value="Idade:" />
-                <p:inputNumber id="idade" value="#{pessoaBean.pessoa.idade}" required="true" requiredMessage="Informe a idade!" />
-
-                <h:outputLabel for="sexo" value="Sexo:" />
-                <p:selectOneMenu id="sexo" value="#{pessoaBean.pessoa.sexo}">
-                    <f:selectItem itemLabel="Selecione" itemValue="" />
-                    <f:selectItem itemLabel="Masculino" itemValue="M" />
-                    <f:selectItem itemLabel="Feminino" itemValue="F" />
-                    <f:selectItem itemLabel="Outro" itemValue="O" />
-                </p:selectOneMenu>
-
-            </h:panelGrid>
-
-            <p:separator />
-
-            <p:commandButton value="Salvar" icon="pi pi-save"
-                             action="#{pessoaBean.salvar}"
-                             update="formPessoa msgs" />
-
-            <p:commandButton value="Limpar" icon="pi pi-times"
-                             type="reset" styleClass="ui-button-secondary" />
-        </p:panel>
-    </h:form>
-
-    <h:form id="formLista">
-        <p:panel header="Lista de Pessoas" style="max-width:800px;margin:auto;margin-top:30px;">
-            <p:dataTable value="#{pessoaBean.listaPessoas}" var="p" paginator="true" rows="5" responsiveLayout="scroll">
-                <p:column headerText="ID">
-                    <h:outputText value="#{p.id}" />
-                </p:column>
-
-                <p:column headerText="Nome">
-                    <h:outputText value="#{p.nome}" />
-                </p:column>
-
-                <p:column headerText="Email">
-                    <h:outputText value="#{p.email}" />
-                </p:column>
-
-                <p:column headerText="Idade">
-                    <h:outputText value="#{p.idade}" />
-                </p:column>
-
-                <p:column headerText="Sexo">
-                    <h:outputText value="#{p.sexo}" />
-                </p:column>
-            </p:dataTable>
-        </p:panel>
-    </h:form>
 
 </h:body>
 </html>
