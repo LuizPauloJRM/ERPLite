@@ -21,42 +21,54 @@
 	<!-- Baseado em componentes dentro do body baseados em html-->
 	<h:form id="formPessoa">
 		<h1>Cadastro</h1>
-		
+
 		<!-- 	teste -->
 		<!-- 		<h:inputText id="campoNome"></h:inputText> -->
 		<!-- 		<h:outputText value="Jsf funcionando..."/> -->
 		<!-- 		<h:commandButton value="Botao"/> -->
-		
+
 		<!-- Expression Language JSF -->
 		<!-- São declaradas pelo atributo value -->
 		<!-- Minha caixa de texto colocando um valor dentro  -->
 		<!-- Esse valor pode ser vindo do ManagedBean um dado do usuario -->
 		<!-- Valor dinamico do lado do backend , expressao de linguagem-->
-		
+
 		<!-- Expression Language (EL) jsf #{objeto.atributo} , nome , sobrenome do meu backend que foi criado -->
 		<!-- Expression Language (EL) jsf #{objeto.acao} , salvar , excluir , enviar,"método" -->
 		<!-- setNome(String nome) -->
 		<!-- getNome() -->
-		<!-- Ao salvar chama o "set" guarda o valor , consulta ou mostra valores "get" -->		
+		<!-- Ao salvar chama o "set" guarda o valor , consulta ou mostra valores "get" -->
 		<!-- Chamada para controlar a tela , referenciar , injetando atributos para carregar os dados  -->
 		<!-- inputText capturar dados inseridos pelo usuário -->
+		
 		Nome:
-		<h:inputText id="nome" value="#{pessoaBean.nome}"/>
-		<br/>	
+		<h:inputText id="nome" value="#{pessoaBean.nome}" />
+		<br />
 		<!-- Output Saida  -->
 		Sobrenome:
-		<h:inputText id="sobrenome" value="#{pessoaBean.sobrenome}"/>
-		<br/>
+		<h:inputText id="sobrenome" value="#{pessoaBean.sobrenome}" />
+		<br />
 		Email:
-		<h:inputText id="email" value="#{pessoaBean.email}"/>
-		<br/>
-		<!-- Juntar nome e sobrenome botoes de comando para chamar uma ação  o "action="-->
-		<h:outputText value="#{pessoaBean.nomeCompleto}"/>
-		<br/>
+		<h:inputText id="email" value="#{pessoaBean.email}" />
+		<br />
 		
 		<!-- Criar um método mostrar nome  para juntar nome e sobrenome e mostrar nome completo , podemos chamar método-->
 		<!-- Formulario envia todos os dados -->
-		<h:commandButton action="#{pessoaBean.mostrarNome}" value="Mostrar nome"/>
+		<h:commandButton action="#{pessoaBean.adicionarNome}"
+			value="Adicionar nome" />
+
+		<!-- Mostrar os nomes que estao sendo adicionados na lista -->
+		<!-- DataTable exibir conjuntos de dados em formato de tabela na interface de uma aplicação web -->
+		<!-- Componente que vai ler a lista e escrever em uma coluna   mostrando os nomes -->
+		<!-- Expression Languagem apontado para variável -->
+		<h:dataTable value="#{pessoaBean.nomes}" var="nome">
+			<h:column>
+			
+				<h:outputText value="#{nome}" />
+			</h:column>
+
+		</h:dataTable>
+
 	</h:form>
 
 

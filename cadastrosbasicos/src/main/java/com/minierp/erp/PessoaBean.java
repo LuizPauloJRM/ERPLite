@@ -1,6 +1,10 @@
 package com.minierp.erp;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ViewScoped;
 //@RequestScoped	Uma única requisição HTTP	N/A (específico da requisição)
 //@ViewScoped	Interação na mesma página JSF	N/A (específico do usuário/página)
 //@SessionScoped	Toda a sessão do usuário	Várias requisições do mesmo usuário
@@ -8,6 +12,7 @@ import javax.faces.bean.ManagedBean;
 
 //Agora temos um controlador da pagina jsf, nomeado para chamar "pessoaBean"
 @ManagedBean(name = "pessoaBean")
+@ViewScoped
 public class PessoaBean {
 
 	// Precisamos receber dados da tela o nome e sobrenome 
@@ -16,15 +21,24 @@ public class PessoaBean {
 	private String sobrenome;
 	private String email;
 	private String nomeCompleto;
+	//Adicionar o nome em uma lista, quando clicar adicionar nomes 
+	//Pegar minha lista e adicionar o nome que vem da tela 
+	private List<String> nomes = new ArrayList<String>();
 
 	//Método
-	public void mostrarNome(){
-		nomeCompleto= nome + " " + sobrenome;
-		return ;
-		 
+	public void adicionarNome(){
+		nomes.add(nome);
+		return ;		 
 	}
 	
-	//Setters e Getters 
+	//Setters e Getters
+	public void setNomes(List<String> nomes) {
+		this.nomes = nomes;
+	}
+	public List<String> getNomes() {
+		return nomes;
+	}
+	
 	public String getNome() {
 		return nome;
 	}
