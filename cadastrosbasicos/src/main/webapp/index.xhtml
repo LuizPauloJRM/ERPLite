@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<!-- Define que o documento é uma página XHTML (usado pelo JSF) Estrutura inicial com os imports para fazer referencia com componentes -->
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+<!--
+    Essa página é acessada no navegador, por exemplo:
+    http://localhost:8080/cadastrosbasicos/cadastro.xhtml
+    Ela é responsável por exibir e gerenciar o cadastro e listagem de pessoas.
+-->
+
+<h:head>
+	<title>Chamada de navegação implícita</title>
+</h:head>
+<!-- http://localhost:8080/cadastrosbasicos/index.xhtml -->
+<h:body>
+	<h:form id="formPessoa">
+		<h1>Página de navegação implícita</h1>
+		<!-- Navegação implícita -->
+		<!-- Navegação é feita em cima de um action -->
+		<h:commandLink value="Navegar pagina de cadastro" action="cadastro"/>
+
+	</h:form>
+
+
+</h:body>
+</html>
