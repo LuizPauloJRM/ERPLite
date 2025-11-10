@@ -63,7 +63,7 @@
 		<dependency>
 			<groupId>mysql</groupId>
 			<artifactId>mysql-connector-java</artifactId>
-			<version>6.0.4</version>
+			<version>8.0.33</version>
 		</dependency>
 
 		<!-- Dependências JAXB (necessárias se usar Java 11 ou superior) -->

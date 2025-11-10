@@ -6,5 +6,49 @@
                         http://xmlns.jcp.org/xml/ns/javaee/web-facesconfig_2_2.xsd"
     version="2.2">
 
+    <!-- =====================================================
+         CONFIGURAÇÃO DO PROJETO JSF - faces-config.xml
+         ===================================================== -->
+
+    <!-- 
+        1. REGISTRO DO MANAGED BEAN
+        Embora você já use a anotação @ManagedBean, 
+        podemos também declarar aqui (opcional).
+        Isso ajuda em projetos maiores ou migrações de versão.
+    -->
+    <!--
+    <managed-bean>
+        <managed-bean-name>pessoaBean</managed-bean-name>
+        <managed-bean-class>com.minierp.erp.PessoaBean</managed-bean-class>
+        <managed-bean-scope>view</managed-bean-scope>
+    </managed-bean>
+    -->
+
+    <!-- 
+        2. CONFIGURAÇÃO DE NAVEGAÇÃO
+        Aqui definimos regras de "para onde ir" após uma ação.
+        Exemplo: quando clicar em "salvar", ir para uma página de sucesso.
+    -->
+    <navigation-rule>
+        <!-- Página de origem -->
+        <from-view-id>/index.xhtml</from-view-id>
+
+        <!-- Regra de navegação -->
+        <navigation-case>
+            <!-- Valor retornado pelo método action do Bean -->
+            <from-outcome>cadastro</from-outcome>
+            <!-- Página de destino -->
+            <to-view-id>/cadastro.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+
+    <!-- 
+        3. CONFIGURAÇÕES ADICIONAIS (OPCIONAL)
+        Aqui podem entrar:
+        - Conversores (para CPF, datas, etc.)
+        - Validadores
+        - Filtros de ciclo de vida (Lifecycle)
+        - Managed Properties (injeções)
+    -->
 
 </faces-config>
