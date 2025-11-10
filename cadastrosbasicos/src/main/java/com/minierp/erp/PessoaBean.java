@@ -1,6 +1,10 @@
 package com.minierp.erp;
 
 import javax.faces.bean.ManagedBean;
+//@RequestScoped	Uma única requisição HTTP	N/A (específico da requisição)
+//@ViewScoped	Interação na mesma página JSF	N/A (específico do usuário/página)
+//@SessionScoped	Toda a sessão do usuário	Várias requisições do mesmo usuário
+//@ApplicationScoped	Todo o ciclo da aplicação	Todos os usuários da aplicação
 
 //Agora temos um controlador da pagina jsf, nomeado para chamar "pessoaBean"
 @ManagedBean(name = "pessoaBean")
