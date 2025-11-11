@@ -5,6 +5,9 @@ import java.util.List;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
+import javax.faces.component.html.HtmlCommandButton;
+
+import org.primefaces.component.commandbutton.CommandButton;
 //@RequestScoped	Uma única requisição HTTP	N/A (específico da requisição)
 //@ViewScoped	Interação na mesma página JSF	N/A (específico do usuário/página)
 //@SessionScoped	Toda a sessão do usuário	Várias requisições do mesmo usuário
@@ -18,6 +21,7 @@ public class PessoaBean {
 	// Precisamos receber dados da tela o nome e sobrenome 
 	//Quando clicar no botao salvar vai vim esses atributos nome e sobrenome 
 	private String nome;
+	private HtmlCommandButton commandButton;
 	private String sobrenome;
 	private String email;
 	private String nomeCompleto;
@@ -25,13 +29,26 @@ public class PessoaBean {
 	//Pegar minha lista e adicionar o nome que vem da tela 
 	private List<String> nomes = new ArrayList<String>();
 
-	//Método
+	//Métodos	
+	//Maior de 3 nomes desabilita
 	public void adicionarNome(){
 		nomes.add(nome);
-		return ;		 
+		if (nomes.size() >3) {
+			CommandButton commandButton = new CommandButton();
+			commandButton.setDisabled(true);
+			
+		}
+		return;		 
 	}
 	
-	//Setters e Getters
+	//Setters e Getters)
+	public void setCommandButton(HtmlCommandButton commandButton) {
+		this.commandButton = commandButton;
+	}
+	public HtmlCommandButton getCommandButton() {
+		return commandButton;
+	}
+	
 	public void setNomes(List<String> nomes) {
 		this.nomes = nomes;
 	}

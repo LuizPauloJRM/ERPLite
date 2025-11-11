@@ -44,6 +44,13 @@
 		Nome:
 		<h:inputText id="nome" value="#{pessoaBean.nome}" />
 		<br />
+		
+		<!-- BackingBean componentes html e jsf : Amarração desses objetos na tela -->
+		<!-- Biding amarra com objeto java , refletem na pag jsf -->
+		<!-- Amarração do lado do backend com front  -->
+		<h:commandButton  binding="#{pessoaBean.commandButton}"
+		value="Adicionar Nome" action="#{pessoaBean.adicionarNome}"/>
+		<br/>
 		<!-- Output Saida  -->
 		Sobrenome:
 		<h:inputText id="sobrenome" value="#{pessoaBean.sobrenome}" />
@@ -68,6 +75,7 @@
 			</h:column>
 
 		</h:dataTable>
+		<h:commandButton value="Voltar" action="index"/>
 
 	</h:form>
 
