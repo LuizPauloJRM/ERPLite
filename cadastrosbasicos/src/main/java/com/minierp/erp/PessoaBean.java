@@ -21,10 +21,13 @@ public class PessoaBean {
 	// Precisamos receber dados da tela o nome e sobrenome 
 	//Quando clicar no botao salvar vai vim esses atributos nome e sobrenome 
 	private String nome;
+	private String senha;
+	private String texto;
 	private HtmlCommandButton commandButton;
 	private String sobrenome;
 	private String email;
 	private String nomeCompleto;
+	
 	//Adicionar o nome em uma lista, quando clicar adicionar nomes 
 	//Pegar minha lista e adicionar o nome que vem da tela 
 	private List<String> nomes = new ArrayList<String>();
@@ -43,6 +46,19 @@ public class PessoaBean {
 	}
 	
 	//Setters e Getters)
+	public void setTexto(String texto) {
+		this.texto = texto;
+	}
+	public String getTexto() {
+		return texto;
+	}
+	public void setSenha(String senha) {
+		this.senha = senha;
+	}
+	public String getSenha() {
+		return senha;
+	}
+	
 	public void setCommandButton(HtmlCommandButton commandButton) {
 		this.commandButton = commandButton;
 	}

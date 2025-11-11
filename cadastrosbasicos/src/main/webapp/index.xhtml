@@ -14,13 +14,13 @@
 
 <h:head>
 	<title>Chamada de navegação implícita</title>
-	<script>
-		function alterarValordoCampo() {
-// 			alert('Clicou')
-			var document.getElementById('formPessoa:nome');
-			campo.value = 'Botão Clicar';
-		}
-	</script>
+<!-- 	<script>
+	function alterarValordoCampo() {
+
+ 			var document.getElementById('formPessoa:nome');
+ 			campo.Value = 'Botão Clicar';
+ 		} -->	
+<!-- 	</script> -->
 </h:head>
 <!-- http://localhost:8080/cadastrosbasicos/index.xhtml -->
 <h:body>
@@ -30,11 +30,12 @@
 		<!-- Navegação é feita em cima de um action -->
 		<!-- Botoes de comando -->
 		<!-- 		<h:commandLink value="Navegar pagina de cadastro" action="cadastro"/> -->
+		<h:commandButton value="Navegador Explicita" action="dinamica"/>
+		<h:commandButton value="Clicar" onclick="alterarValordoCampo();"/>
 		<br/>
 		<h:commandButton value="Navegar pagina de cadastro" action="cadastro" />
 	<h:inputText value="Nome" action="cadastro"/>
-		<h:commandButton value="Navegador Explicita" action="dinamica"/>
-		<h:commandButton value="Clicar" onclick="alterarValordoCampo();"/>
+		
 	</h:form>
 
 
