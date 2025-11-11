@@ -36,9 +36,10 @@ public class PessoaBean {
 		if (nomes.size() >3) {
 			CommandButton commandButton = new CommandButton();
 			commandButton.setDisabled(true);
+			return;
 			
 		}
-		return;		 
+		return ;		 
 	}
 	
 	//Setters e Getters)
