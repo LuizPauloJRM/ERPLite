@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<!-- Define que o documento é uma página XHTML (usado pelo JSF) Estrutura inicial com os imports para fazer referencia com componentes -->
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+<!--
+    Essa página é acessada no navegador, por exemplo:
+    http://localhost:8080/cadastrosbasicos/primeirapagina.xhtml
+    Ela é responsável por exibir e gerenciar o cadastro e listagem de pessoas.
+-->
+
+<h:head>
+	<title>Cadastro de Pessoas</title>
+</h:head>
+
+<h:body>
+	
+	<h:form id="formPessoa">
+		<h1>Primeira página</h1>
+		
+		<!-- Saída de texto : Mostrar-->
+		<h:outputText value="#{pessoaBean.nome}"/>
+		<br/>
+		<!-- Apontar para componente html, qual função dessa entrada de texto  para mostrar -->
+		<h:outputLabel value="Nome: " for="camponome"/>
+		
+		<!-- Usado para gravar -->
+		<h:outputText id="componente" value="#{pessoaBean.nome}"/>
+	</h:form>
+
+
+</h:body>
+</html>
