@@ -42,7 +42,7 @@
 		<!-- inputText capturar dados inseridos pelo usuário -->
 		
 		Nome:
-		<h:inputText id="nome" value="#{pessoaBean.pessoa.nome}" />
+		<h:inputText id="nome" value="#{pessoaBean.nome}" />
 		<br />
 		<!-- Output Saida  -->
 		Sobrenome:
@@ -51,7 +51,7 @@
 		Email:
 		<h:inputText id="email" value="#{pessoaBean.email}" />
 		<br />
-
+		
 		<!-- Criar um método mostrar nome  para juntar nome e sobrenome e mostrar nome completo , podemos chamar método-->
 		<!-- Formulario envia todos os dados -->
 		<h:commandButton action="#{pessoaBean.adicionarNome}"
@@ -63,109 +63,14 @@
 		<!-- Expression Languagem apontado para variável -->
 		<h:dataTable value="#{pessoaBean.nomes}" var="nome">
 			<h:column>
-
+			
 				<h:outputText value="#{nome}" />
 			</h:column>
 
 		</h:dataTable>
 
-		<!-- ====================================================== -->
-		<!-- 4) SALVAR / LISTAR (persistência com Pessoa e PessoaDao) -->
-		<!--
-             Esta seção adiciona os controles para salvar a entidade Pessoa no
-             banco e listar os registros persistidos. Para funcionar você deve:
-             - Ter Pessoa (entidade JPA) em com.minierp.erp.model.Pessoa
-             - Ter PessoaDao com os métodos salvar(Pessoa) e listarTodas()
-             - Ter PessoaBean adaptado para expor:
-                 * pessoa (objeto Pessoa) para binding dos campos
-                 * salvar() -> ação que persiste via PessoaDao
-                 * listaPessoas (List<Pessoa>) para preencher a tabela
-        -->
-		<!-- ====================================================== -->
-
-		<h:panelGroup style="margin-top:20px;">
-			<h3>Salvar no banco</h3>
-
-			<!-- Agora os campos vão ligar diretamente ao objeto 'pessoa' do bean -->
-			<p:inputText value="#{pessoaBean.pessoa.nome}" />
-			<br/>
-			<p:inputText value="#{pessoaBean.pessoa.email}" />
-			<br/>
-			<p:inputText value="#{pessoaBean.pessoa.idade}" />
-			<br/>
-			<p:inputText value="#{pessoaBean.pessoa.sexo}" />
-			<br/>
-
-
-			<h:outputLabel for="p_sexo" value="Sexo:" />
-			<h:selectOneMenu id="p_sexo" value="#{pessoaBean.pessoa.sexo}">
-				<f:selectItem itemLabel="Selecione" itemValue="" />
-				<f:selectItem itemLabel="Masculino" itemValue="M" />
-				<f:selectItem itemLabel="Feminino" itemValue="F" />
-				<f:selectItem itemLabel="Outro" itemValue="O" />
-			</h:selectOneMenu>
-			<br />
-
-			<!-- Botão que chama o método salvar() no bean -->
-			<!-- Ao chamar salvar(), o bean deve persistir a Pessoa via PessoaDao -->
-			<h:commandButton value="Salvar (Banco)" action="#{pessoaBean.salvar}" />
-			<!-- Você pode adicionar um botão limpar que recria pessoa no bean -->
-			<h:commandButton value="Limpar" action="#{pessoaBean.novaPessoa}"
-				immediate="true" />
-			<p:commandButton value="Novo" action="#{pessoaBean.novaPessoa}"
-				update="@form" />
-
-		</h:panelGroup>
-
 	</h:form>
 
-	<!-- LISTA DE PESSOAS PERSISTIDAS -->
-	<!-- Separar o form para que atualizações/ações possam ser independentes -->
-	<h:form id="formLista" style="margin-top:30px;">
-		<h3>Lista de Pessoas (do banco)</h3>
-
-		<!--
-            A tabela abaixo exibe os registros retornados por getListaPessoas()
-            no PessoaBean. As colunas mostram id, nome, email, idade e sexo.
-            Para remover um registro, você pode implementar pessoaBean.remover(p)
-        -->
-		<h:dataTable value="#{pessoaBean.listaPessoas}" var="p" border="1"
-			cellpadding="5">
-
-			<h:column>
-				<f:facet name="header">ID</f:facet>
-				<h:outputText value="#{p.id}" />
-			</h:column>
-
-			<h:column>
-				<f:facet name="header">Nome</f:facet>
-				<h:outputText value="#{p.nome}" />
-			</h:column>
-
-			<h:column>
-				<f:facet name="header">Email</f:facet>
-				<h:outputText value="#{p.email}" />
-			</h:column>
-
-			<h:column>
-				<f:facet name="header">Idade</f:facet>
-				<h:outputText value="#{p.idade}" />
-			</h:column>
-
-			<h:column>
-				<f:facet name="header">Sexo</f:facet>
-				<h:outputText value="#{p.sexo}" />
-			</h:column>
-
-			<!-- Coluna de ações (opcional) -->
-			<h:column>
-				<f:facet name="header">Ações</f:facet>
-				<!-- Botão de exemplo para remover (implementação no bean) -->
-				<h:commandButton value="Remover" action="#{pessoaBean.remover(p)}" />
-			</h:column>
-
-		</h:dataTable>
-	</h:form>
 
 </h:body>
 </html>

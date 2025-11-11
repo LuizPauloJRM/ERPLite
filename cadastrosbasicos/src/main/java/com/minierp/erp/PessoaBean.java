@@ -1,102 +1,69 @@
 package com.minierp.erp;
 
-import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
-import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
-import javax.faces.context.FacesContext;
+//@RequestScoped	Uma única requisição HTTP	N/A (específico da requisição)
+//@ViewScoped	Interação na mesma página JSF	N/A (específico do usuário/página)
+//@SessionScoped	Toda a sessão do usuário	Várias requisições do mesmo usuário
+//@ApplicationScoped	Todo o ciclo da aplicação	Todos os usuários da aplicação
 
-import com.minierp.erp.dao.PessoaDao;
-import com.minierp.erp.model.Pessoa;
-
-/**
- * PessoaBean - Backing bean JSF que faz a ponte entre a view (XHTML) e a camada
- * de persistência (PessoaDao).
- *
- * @ViewScoped - mantém o bean durante a interação na mesma página.
- */
+//Agora temos um controlador da pagina jsf, nomeado para chamar "pessoaBean"
 @ManagedBean(name = "pessoaBean")
 @ViewScoped
-public class PessoaBean implements Serializable {
+public class PessoaBean {
 
-	private static final long serialVersionUID = 1L;
+	// Precisamos receber dados da tela o nome e sobrenome 
+	//Quando clicar no botao salvar vai vim esses atributos nome e sobrenome 
+	private String nome;
+	private String sobrenome;
+	private String email;
+	private String nomeCompleto;
+	//Adicionar o nome em uma lista, quando clicar adicionar nomes 
+	//Pegar minha lista e adicionar o nome que vem da tela 
+	private List<String> nomes = new ArrayList<String>();
 
-	// Modelo que será ligado ao formulário (nome, email, etc).
-	private Pessoa pessoa = new Pessoa();
-
-	// DAO para persistência
-	private PessoaDao pessoaDao = new PessoaDao();
-
-	// Lista usada pela dataTable para exibir registros do banco
-	private List<Pessoa> listaPessoas;
-
-	/**
-	 * Método chamado pelo botão "Salvar". Persiste a pessoa no banco e recarrega a
-	 * lista.
-	 */
-	public void salvar() {
-		try {
-			// Salva no banco (inserção)
-			pessoaDao.salvar(pessoa);
-
-			// Mensagem de feedback para o usuário
-			FacesContext.getCurrentInstance().addMessage(null,
-					new FacesMessage(FacesMessage.SEVERITY_INFO, "Sucesso", "Pessoa cadastrada com sucesso."));
-
-			// Limpa o formulário (novo objeto)
-			pessoa = new Pessoa();
-
-			// Atualiza a lista para refletir o novo registro
-			listaPessoas = pessoaDao.listarTodas();
-		} catch (Exception e) {
-			// Em caso de erro mostramos mensagem de erro
-			FacesContext.getCurrentInstance().addMessage(null,
-					new FacesMessage(FacesMessage.SEVERITY_ERROR, "Erro", "Falha ao salvar: " + e.getMessage()));
-			e.printStackTrace();
-		}
+	//Método
+	public void adicionarNome(){
+		nomes.add(nome);
+		return ;		 
+	}
+	
+	//Setters e Getters
+	public void setNomes(List<String> nomes) {
+		this.nomes = nomes;
+	}
+	public List<String> getNomes() {
+		return nomes;
+	}
+	
+	public String getNome() {
+		return nome;
 	}
 
-	/**
-	 * Retorna a lista de pessoas - carrega do banco apenas na primeira chamada.
-	 */
-	public List<Pessoa> getListaPessoas() {
-		if (listaPessoas == null) {
-			listaPessoas = pessoaDao.listarTodas();
-		}
-		return listaPessoas;
+	public void setNome(String nome) {
+		this.nome = nome;
+	}
+	public String getSobrenome() {
+		return sobrenome;
+	}
+	public void setSobrenome(String sobrenome) {
+		this.sobrenome = sobrenome;
 	}
 
-	public void novaPessoa() {
-		this.pessoa = new Pessoa();
+	public String getEmail() {
+		return email;
 	}
 
-	// Método para remover um registro (pode ser ligado a um botão na tabela)
-	public void remover(Pessoa p) {
-		try {
-			pessoaDao.remover(p.getId());
-			FacesContext.getCurrentInstance().addMessage(null,
-					new FacesMessage(FacesMessage.SEVERITY_INFO, "Removido", "Pessoa removida com sucesso."));
-			listaPessoas = pessoaDao.listarTodas(); // recarrega lista
-		} catch (Exception e) {
-			FacesContext.getCurrentInstance().addMessage(null,
-					new FacesMessage(FacesMessage.SEVERITY_ERROR, "Erro", "Não foi possível remover."));
-			e.printStackTrace();
-		}
+	public void setEmail(String email) {
+		this.email = email;
 	}
-
-	// GETTERS E SETTERS
-
-	public Pessoa getPessoa() {
-		return pessoa;
+	public String getNomeCompleto() {
+		return nomeCompleto;
 	}
-
-	public void setPessoa(Pessoa pessoa) {
-		this.pessoa = pessoa;
-	}
-
-	public void setListaPessoas(List<Pessoa> listaPessoas) {
-		this.listaPessoas = listaPessoas;
+	public void setNomeCompleto(String nomeCompleto) {
+		this.nomeCompleto = nomeCompleto;
 	}
 }
